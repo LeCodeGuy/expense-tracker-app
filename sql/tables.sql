@@ -4,10 +4,10 @@ CREATE TABLE expense (
    amount numeric not null, 
    total numeric not null,  
    category_id int not null,
-   foreign key (category_id) references categories(id)
+   foreign key (category_id) references Categories(id)
 );
 
 CREATE TABLE Categories (
-    ID serial primary key, 
-    Category_Type text NOT NULL
+    id serial primary key, 
+    category_type text NOT NULL
 );
