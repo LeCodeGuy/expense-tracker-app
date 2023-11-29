@@ -52,7 +52,7 @@ export default function queries(db){
     
     // Retrieve all expenses from the expense table
     async function allExpenses(){
-        return db.any(`SELECT * FROM expense ORDER BY ID`);
+        return db.any(`SELECT * FROM expense AS e JOIN categories AS c ON category_id = c.id ORDER BY e.ID`);
     }
 
     // Delete a specific expense based on expense name and category
@@ -65,8 +65,21 @@ export default function queries(db){
         await db.none('TRUNCATE TABLE expense RESTART IDENTITY CASCADE');
     }
     
+    async function allCategories(){
+        return await db.any(`SELECT category_type AS category 
+                        FROM categories  
+                        ORDER BY id`);
+    }
+    async function totalExpense(){
+        let result = await db.oneOrNone(`SELECT SUM(total) AS total FROM Expense`);
+        // result = parseFloat(result.total).toFixed(2);
+        return result;
+
+    }
     // Return the public API of the module
     return{
+        allCategories,
+        totalExpense,
         categoryTotals,
         addExpense,
         expensesForCategory,

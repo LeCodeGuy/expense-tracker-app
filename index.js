@@ -48,6 +48,9 @@ const handlebarSetup = exphbs.engine({
         },
         gte: function (v1, v2) {
             return v1 >= v2;
+        },
+        formatDecimal: function(v1) {
+            return parseFloat(v1).toFixed(2);
         }
     },
     partialsDir: './views/partials',
@@ -71,6 +74,12 @@ let routes = expenseTrackerRoutes(services);
 
 // TODO define routes
 // Routes
+app.get('/', routes.home);
+
+app.post('/showExpenses',routes.showExpenses);
+app.post('/return',routes.returnHome);
+
+app.get('/expenses', routes.allExpenses)
 
 // Set PORT variable
 let port = process.env.PORT || 3000;

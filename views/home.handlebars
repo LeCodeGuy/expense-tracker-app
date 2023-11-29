@@ -1,0 +1,37 @@
+<div class="bodyContent">
+    <h1 class="mainHeading">{{pageTitle}}</h1>
+    <form action="/addExpense" method="post">
+        <h2>Add Expense</h2>
+        <input type="text" name="txtExpense" id="txtExpense" class="txtBox" placeholder="Expense e.g Coffee">
+        <input type="number" name="txtAmount" id="txtAmount" class="txtBox" placeholder="Amount e.g 30">
+        <select name="categories" class="ddCategory" id="categories">
+            <option value='all'>all</option>
+            {{#each categoryData}}
+            <option value="{{this.category}}">{{this.category}}</option>
+            {{/each}}
+        </select>
+        <input type="submit" value="Add Expense" class="btn">
+    </form>
+    <div class="totalExpense">
+        <h2>Total Expenses: R {{formatDecimal totalExpense.total}}</h2>
+        {{!-- <span></span> --}}
+    </div>
+    <div>
+        <h2>Expense summary per category</h2>
+        <table>
+            <tr>
+                <th>Category</th>
+                <th>Total</th>
+            </tr>
+            {{#each summaryData}}
+            <tr>
+                <td>{{this.category}}</td>
+                <td>R {{formatDecimal this.total}}</td>
+            </tr>
+            {{/each}}
+        </table>
+    </div>
+    <form action="/showExpenses" method="post">
+        <input type="submit" value="View Expenses" class="btn">
+    </form>
+</div>

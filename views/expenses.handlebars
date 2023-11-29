@@ -1,0 +1,24 @@
+<div class="bodyContent">
+    <h1 class="mainHeading">{{pageTitle}}</h1>
+    <h2>All Expenses</h2>
+    <table>
+        <tr>
+            <th>Expense</th>
+            <th>Category</th>
+            <th>Totals</th>
+            <th></th>
+        </tr>
+        <form action="/remove" method="post"></form>
+        {{#each allExpensesData}}
+        <tr>
+            <td>{{this.expense}}</td>
+            <td>{{this.category_type}}</td>
+            <td>R {{formatDecimal this.total}}</td>
+            <td><input type="submit" value="Delete" class="btn"></td>
+        </tr>
+        {{/each}}
+    </table>
+    <form action="/return" method="post">
+        <input type="submit" value="Back to home" class="btn">
+    </form>
+</div>
