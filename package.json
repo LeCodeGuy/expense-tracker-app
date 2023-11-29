@@ -1,7 +1,7 @@
 {
-  "name": "",
+  "name": "expense-tracker-app",
   "version": "1.0.0",
-  "description": "",
+  "description": "An expense tracking app that allows a user to enter daily, weekly and monthly expenses and show an expense total for each period",
   "main": "index.js",
   "type": "module",
   "license": "AGPL-version-3.0",
@@ -20,12 +20,23 @@
   "author": {
     "name": "",
     "email": "",
-    "url": ""
+    "url": "https://github.com/LeCodeGuy/expense-tracker-app"
   },
   "contributors": [],
   "scripts": {
     "dev": "",
     "test": "mocha",
     "start": "node index.js"
+  },
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "express-flash": "^0.0.2",
+    "express-handlebars": "^7.1.2",
+    "express-session": "^1.17.3",
+    "helmet": "^7.1.0",
+    "mocha": "^10.2.0",
+    "pg-promise": "^11.5.4"
   }
 }

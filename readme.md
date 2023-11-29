@@ -1,0 +1,1 @@
+[![NodeJS CI with PostgreSQL](https://github.com/LeCodeGuy/expense-tracker-app/actions/workflows/node.js.yml/badge.svg)](https://github.com/LeCodeGuy/expense-tracker-app/actions/workflows/node.js.yml)
