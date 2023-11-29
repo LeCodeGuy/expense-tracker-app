@@ -28,7 +28,8 @@ describe("Expense Tracker App testing", function(){
                     expense: 'Coffee',
                     amount: '30',
                     total: '150',
-                    category_id: 3
+                    category_id: 3,
+                    category_type: 'weekday'
                     }
                 ]
         // Retrieve all expenses and compare with the expected result
@@ -54,8 +55,8 @@ describe("Expense Tracker App testing", function(){
                 expense: 'Rent',
                 amount: '5000',
                 total: '5000',
-                category_id: 6
-                
+                category_id: 6,
+                category_type: 'monthly'
             }
         ]
 
@@ -123,14 +124,16 @@ describe("Expense Tracker App testing", function(){
                 expense: 'Coffee',
                 amount: '30',
                 total: '150',
-                category_id: 3
+                category_id: 3,
+                category_type: 'weekday'
             },
             {
                 id:2,
                 expense: 'Rent',
                 amount: '5000',
                 total: '5000',
-                category_id: 6
+                category_id: 6,
+                category_type: 'monthly'
                 
             },
             {
@@ -138,7 +141,8 @@ describe("Expense Tracker App testing", function(){
                 expense: 'Groceries',
                 amount: '1000',
                 total: '4000',
-                category_id: 5
+                category_id: 5,
+                category_type: 'weekly'
                 
             }
         ]

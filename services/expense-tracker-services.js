@@ -52,7 +52,7 @@ export default function queries(db){
     
     // Retrieve all expenses from the expense table
     async function allExpenses(){
-        return db.any(`SELECT * FROM expense AS e JOIN categories AS c ON category_id = c.id ORDER BY e.ID`);
+        return db.any(`SELECT e.id,expense,amount,total,category_id,c.category_type FROM expense AS e JOIN categories AS c ON category_id = c.id ORDER BY e.ID`);
     }
 
     // Delete a specific expense based on expense name and category
