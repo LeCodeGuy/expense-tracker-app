@@ -15,6 +15,7 @@ describe("Expense Tracker App testing", function(){
     this.beforeEach(async function (){
         await query.reset();
     });
+    
     // Test case: Adding an expense
     it("should be able to add an expense", async function (){
         // Add an expense to the database       

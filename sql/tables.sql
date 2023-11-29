@@ -4,7 +4,7 @@ CREATE TABLE expense (
    amount numeric not null, 
    total numeric not null,  
    category_id int not null,
-   foreign key (category_id) references category(id)
+   foreign key (category_id) references categories(id)
 );
 
 CREATE TABLE Categories (
