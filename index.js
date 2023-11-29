@@ -40,17 +40,20 @@ app.use(express.static('public'));
 const handlebarSetup = exphbs.engine({
     // Define custom helpers
     helpers: {
-        eq: function (v1, v2) {
-            return v1 === v2;
-        },
-        lte: function (v1, v2) {
-            return v1 <= v2;
-        },
-        gte: function (v1, v2) {
-            return v1 >= v2;
+        ne: function(v1, v2){
+            return v1 != v2
         },
         formatDecimal: function(v1) {
-            return parseFloat(v1).toFixed(2);
+            let result
+
+            if(v1 === null){
+                result = parseFloat(0).toFixed(2);
+            }
+            else {
+                result = parseFloat(v1).toFixed(2)
+            }
+
+            return result ;
         }
     },
     partialsDir: './views/partials',
@@ -72,14 +75,16 @@ app.use(bodyParser.json());
 let services = queries(db);
 let routes = expenseTrackerRoutes(services);
 
-// TODO define routes
 // Routes
+// Landing page routes
 app.get('/', routes.home);
-
+app.post('/addExpense', routes.addExpense);
 app.post('/showExpenses',routes.showExpenses);
-app.post('/return',routes.returnHome);
 
-app.get('/expenses', routes.allExpenses)
+// Expense detail routes
+app.get('/expenses', routes.allExpenses);
+app.post('/remove/:expense/:category', routes.deleteExpense);
+app.post('/return',routes.returnHome);
 
 // Set PORT variable
 let port = process.env.PORT || 3000;

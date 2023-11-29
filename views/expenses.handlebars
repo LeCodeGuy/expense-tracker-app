@@ -8,13 +8,17 @@
             <th>Totals</th>
             <th></th>
         </tr>
-        <form action="/remove" method="post"></form>
+        
         {{#each allExpensesData}}
         <tr>
             <td>{{this.expense}}</td>
             <td>{{this.category_type}}</td>
             <td>R {{formatDecimal this.total}}</td>
-            <td><input type="submit" value="Delete" class="btn"></td>
+            <td>
+                <form action="/remove/{{this.expense}}/{{this.category_type}}" method="post">
+                    <input type="submit" value="Delete" class="btn">
+                </form>
+            </td>
         </tr>
         {{/each}}
     </table>

@@ -1,3 +1,14 @@
+// Expenses should be added to the expense table the following number of times:
+// Monthly and Once Off = 1x
+// Weekly = 4x
+// Weekday = 5x
+// Weekend = 2x
+// Daily = 30x
+
+
+// TODO add method to filter based on category selected,
+// TODO this will be used on the all expenses page.
+
 export default function expenseTracker(query){
 
     // Helper functions
@@ -21,8 +32,6 @@ export default function expenseTracker(query){
         return str;
     }
 
-    // TODO define and write methods to manage user inputs and get variables
-    // TODO required by the services before making calls to the service
     async function home(req,res){
 
         let categoryData = await query.allCategories();
@@ -34,8 +43,35 @@ export default function expenseTracker(query){
             pageTitle:'Expense Tracker App',
             categoryData,
             totalExpense,
-            summaryData
+            summaryData,
         })
+    }
+
+    async function addExpense(req,res){
+        const regex = /^\s*$/;
+
+        let expenseName = titleCase(req.body.txtExpense);
+        let amount = req.body.txtAmount;
+        let category = req.body.categories;
+
+        if(regex.test(expenseName) && amount.length === 0){
+            req.flash('error','Please add an expense name and amount greater than 0')
+        }
+        else{
+            if(!regex.test(expenseName)){
+                if(amount.length != 0){
+                    await query.addExpense(expenseName,category,amount);
+                    req.flash('success',expenseName,' added successfully');
+                }
+                else{
+                    req.flash('error','Please enter an amount greater than 0');
+                }
+            }
+            else{
+                req.flash('error','Please enter an expense name');
+            }
+        }
+        res.redirect('/');
     }
 
     async function showExpenses(req, res){
@@ -51,27 +87,22 @@ export default function expenseTracker(query){
             allExpensesData
         })
     }
+    
+    async function deleteExpense(req,res){
+        await query.deleteExpense(req.params.expense,req.params.category);
+        res.redirect('/expenses');
+    }
 
     async function returnHome(req,res){
         res.redirect('/');
-    }
-
-    // Ensure that the following conditions are met
-    // Blank expenses are not allowed
-    // A method is required to make all expenses sentence case for consistency
-    
-    // Expenses should be added to the expense table the following number of times:
-    // Monthly and Once Off = 1x
-    // Weekly = 4x
-    // Weekday = 5x
-    // Weekend = 2x
-    // Daily = 30x
+    }  
 
     return{
-        // TODO return all the methods for use in the index.js file
         home,
+        addExpense,
         showExpenses,
         allExpenses,
+        deleteExpense,
         returnHome
     }
 }
