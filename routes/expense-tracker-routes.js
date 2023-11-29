@@ -9,10 +9,10 @@ export default function expenseTracker(query){
     // Expenses should be added to the expense table the following number of times:
     // Monthly and Once Off = 1x
     // Weekly = 4x
-    // Weekday = 5x or 20x (awaiting clarification)
-    // Weekend = 2x or 8x (awaiting clarification)
+    // Weekday = 5x
+    // Weekend = 2x
     // Daily = 30x
-    
+
     return{
         // TODO return all the methods for use in the index.js file
     }
